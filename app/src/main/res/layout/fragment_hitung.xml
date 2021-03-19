@@ -148,7 +148,9 @@
             android:layout_marginStart="158dp"
             android:layout_marginTop="36dp"
             android:layout_marginEnd="196dp"
+            android:layout_marginBottom="16dp"
             android:text="BMI : 24,9"
+            app:layout_constraintBottom_toTopOf="@+id/kategoriTextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider" />
@@ -158,12 +160,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="158dp"
-            android:layout_marginTop="32dp"
             android:layout_marginEnd="196dp"
+            android:layout_marginBottom="25dp"
             android:text="Kategori : Ideal"
+            app:layout_constraintBottom_toTopOf="@+id/saranButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bmiTextView" />
+
+        <Button
+            android:id="@+id/saranButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="151dp"
+            android:layout_marginEnd="177dp"
+            android:layout_marginBottom="100dp"
+            android:text="@string/lihat_saran"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:visibility="visible" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
