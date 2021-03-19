@@ -33,8 +33,17 @@
         <br></br><br></br> Aplikasi ini dibuat untuk kelas Mobpro 1. Temukan kodenya di https://github.com/D3IF-Cool/4302-hitung-bmi-rozyfauzan
         atau https://github.com/indraazimi/hitung-bmi
         <br></br><br></br> Copyright © 2021 Indra Azimi.
-        <br></br> All rights reserved.  </string>
-    <string name="tentang_aplikasi">Tentang Aplikasi</string>
+        <br></br> All rights reserved.
+    </string>
 
+    <string name="tentang_aplikasi">Tentang Aplikasi</string>
+    <string name="bagikan">Bagikan</string>
+    <string name="bagikan_template">
+        Berat badan: %1$s kg <br></br>
+        Tinggi badan: %2$s cm <br></br>
+        Jenis kelamin: %3$s<br></br><br></br>%4$s<br></br>%5$s  <br></br>
+
+
+    </string>
 
 </resources>

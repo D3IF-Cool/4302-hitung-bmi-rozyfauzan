@@ -161,28 +161,47 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="158dp"
             android:layout_marginEnd="196dp"
-            android:layout_marginBottom="25dp"
+            android:layout_marginBottom="24dp"
             android:text="Kategori : Ideal"
             app:layout_constraintBottom_toTopOf="@+id/saranButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bmiTextView" />
 
+
         <Button
             android:id="@+id/saranButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="151dp"
+            android:layout_marginStart="30dp"
             android:layout_marginEnd="177dp"
             android:layout_marginBottom="100dp"
             android:text="@string/lihat_saran"
-            android:visibility="visible"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.4"
             app:layout_constraintStart_toStartOf="parent"
-            tools:visibility="visible" />
+             />
 
+        <Button
+            android:id="@+id/shareButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="85dp"
+            android:layout_marginEnd="90dp"
+            android:text="@string/bagikan"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/saranButton"
+            app:layout_constraintTop_toTopOf="@+id/saranButton" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/buttonGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:constraint_referenced_ids="saranButton,shareButton"
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
