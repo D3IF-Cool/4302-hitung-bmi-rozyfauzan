@@ -9,79 +9,93 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import org.d3if4079.hitungbmi.R
+import org.d3if4079.hitungbmi.data.KategoriBMI
 import org.d3if4079.hitungbmi.databinding.FragmentHitungBinding
 
 
-class HitungFragment : Fragment(){
-    private lateinit var binding : FragmentHitungBinding
-    override fun onCreateView(inflater: LayoutInflater,container: ViewGroup?, savedInstanceState: Bundle?): View? {
+class HitungFragment : Fragment() {
+    private lateinit var binding: FragmentHitungBinding
+    private lateinit var kategoriBMI: KategoriBMI
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         binding = FragmentHitungBinding.inflate(layoutInflater, container, false)
 
-         binding.button.setOnClickListener {
+        binding.button.setOnClickListener {
 
-            val berat = binding.beratBadanEditText.text.toString() ;
-            if (TextUtils.isEmpty(berat)){
+            val berat = binding.beratBadanEditText.text.toString();
+            if (TextUtils.isEmpty(berat)) {
                 Toast.makeText(context, R.string.berat_invalid, Toast.LENGTH_LONG).show()
 
             }
-            val tinggi =  binding.tinggiBadanEditText.text.toString()
-            if (TextUtils.isEmpty(tinggi)){
+            val tinggi = binding.tinggiBadanEditText.text.toString()
+            if (TextUtils.isEmpty(tinggi)) {
                 Toast.makeText(context, R.string.tinggi_invalid, Toast.LENGTH_LONG).show()
 
             }
-            val tinggiCm = tinggi.toFloat()/100;
+            val tinggiCm = tinggi.toFloat() / 100;
 
             val selectedId = binding.radioGroup.checkedRadioButtonId
-            if (selectedId==-1){
+            if (selectedId == -1) {
                 Toast.makeText(context, R.string.gender_invalid, Toast.LENGTH_LONG).show()
 
             }
 
 
             val isMale = selectedId == R.id.priaRadioButton
-            val bmi = berat.toFloat()/(tinggiCm*tinggiCm)
+            val bmi = berat.toFloat() / (tinggiCm * tinggiCm)
             val kategori = getKategori(bmi, isMale)
 
 
-           binding.bmiTextView.text = getString(R.string.bmi_x,bmi)
-          binding.kategoriTextView.text = getString(R.string.kategori_x,kategori)
-             binding.saranButton.visibility = View.VISIBLE
+            binding.bmiTextView.text = getString(R.string.bmi_x, bmi)
+            binding.kategoriTextView.text = getString(R.string.kategori_x, kategori)
+            binding.saranButton.visibility = View.VISIBLE
 
         }
 
 
         binding.buttonReset.setOnClickListener {
-             binding.tinggiBadanEditText.text = null
-             binding.beratBadanEditText.text = null
+            binding.tinggiBadanEditText.text = null
+            binding.beratBadanEditText.text = null
         }
 
-        binding.saranButton.setOnClickListener {
-            view : View->view.findNavController().navigate(R.id.action_hitungFragment_to_saranFragment)
+        binding.saranButton.setOnClickListener { view: View ->
+            view.findNavController().navigate(
+               HitungFragmentDirections.actionHitungFragmentToSaranFragment(kategoriBMI)
+            )
         }
 
-        return  binding.root;
+        return binding.root;
 
     }
 
 
-
-
-    private fun getKategori(bmi: Float, isMale:Boolean) : String{
-        val stringRes = if (isMale){
-            when{
-                bmi < 20.5 -> R.string.kurus
-                bmi >= 27.5 -> R.string.gemuk
-                else -> R.string.ideal
+    private fun getKategori(bmi: Float, isMale: Boolean): String {
+       kategoriBMI = if (isMale) {
+            when {
+                bmi < 20.5 -> KategoriBMI.Kurus
+                bmi >= 27.5 ->  KategoriBMI.Gemuk
+                else ->  KategoriBMI.Ideal
             }
-        }else{
-            when{
-                bmi < 18.5 -> R.string.kurus
-                bmi >= 25.0 -> R.string.gemuk
-                else -> R.string.ideal
+        } else {
+            when {
+                bmi < 18.5 -> KategoriBMI.Kurus
+                bmi >= 25.0 -> KategoriBMI.Gemuk
+                else -> KategoriBMI.Ideal
             }
         }
-        return getString(stringRes)
-    }
+
+        val stringRes = when (kategoriBMI) {
+
+                KategoriBMI.Kurus -> R.string.kurus
+                KategoriBMI.Gemuk -> R.string.gemuk
+                KategoriBMI.Ideal -> R.string.ideal
+            }
+            return getString(stringRes)
+        }
     }
 
 
