@@ -12,17 +12,13 @@ abstract class BmiDb : RoomDatabase() {
     abstract val dao: BmiDao
 
     companion object{
-        @Volatile
-        private var INSTANCE : BmiDb? = null
+        @Volatile private var INSTANCE: BmiDb? = null
+        fun getInstance(context: Context): BmiDb {
+            synchronized(this) {
+                var instance = INSTANCE
 
-
-        fun getInstance(context: Context): BmiDb? {
-            synchronized(this){
-                var  instance = INSTANCE
-
-                if (INSTANCE == null) {
-                    instance = Room.databaseBuilder(
-                        context.applicationContext, BmiDb::class.java, "bmi.db").fallbackToDestructiveMigration().build()
+                if (instance == null) {
+                    instance = Room.databaseBuilder( context.applicationContext, BmiDb::class.java, "bmi.db" ).fallbackToDestructiveMigration().build()
                     INSTANCE = instance
                 }
 
