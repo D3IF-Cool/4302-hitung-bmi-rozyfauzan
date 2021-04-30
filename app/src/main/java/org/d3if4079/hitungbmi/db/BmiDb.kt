@@ -18,7 +18,7 @@ abstract class BmiDb : RoomDatabase() {
                 var instance = INSTANCE
 
                 if (instance == null) {
-                    instance = Room.databaseBuilder( context.applicationContext, BmiDb::class.java, "bmi.db" ).fallbackToDestructiveMigration().build()
+                    instance = Room.databaseBuilder(context.applicationContext, BmiDb::class.java, "bmi.db").fallbackToDestructiveMigration().build()
                     INSTANCE = instance
                 }
 
