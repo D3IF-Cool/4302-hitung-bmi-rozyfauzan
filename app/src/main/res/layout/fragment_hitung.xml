@@ -31,7 +31,8 @@
             android:text="@string/bmi_intro"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
         <TextView
             android:id="@+id/beratBadanText"
@@ -53,6 +54,7 @@
             android:ems="10"
             android:inputType="number"
 
+            android:text="@string/default_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/beratBadanText"
@@ -77,6 +79,7 @@
             android:layout_marginEnd="16dp"
             android:ems="10"
             android:inputType="number"
+            android:text="@string/default_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/tinggiBadanText"

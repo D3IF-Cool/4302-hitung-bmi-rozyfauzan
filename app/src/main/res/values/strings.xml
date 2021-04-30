@@ -36,6 +36,8 @@
         <br></br> All rights reserved.
     </string>
 
+
+
     <string name="tentang_aplikasi">Tentang Aplikasi</string>
     <string name="bagikan">Bagikan</string>
     <string name="bagikan_template">
@@ -45,5 +47,6 @@
 
 
     </string>
+    <string name="default_text">0</string>
 
 </resources>
