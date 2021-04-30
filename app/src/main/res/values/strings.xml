@@ -48,5 +48,7 @@
 
     </string>
     <string name="default_text">0</string>
+    <string name="belum_ada_data">Belum Ada Data</string>
+    <string name="histori">Histori</string>
 
 </resources>
