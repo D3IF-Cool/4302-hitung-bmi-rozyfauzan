@@ -9,6 +9,8 @@
     <string name="wanitaRadioButton">Wanita</string>
     <string name="hitungButton">Hitung</string>
     <string name="bmi_x">BMI : %1$.2f</string>
+    <string name="berat_x">BB: %1$.1f</string>
+    <string name="tinggi_x">TB: %1$.1f</string>
     <string name="kurus">Kurus</string>
     <string name="ideal">Ideal</string>
     <string name="gemuk">Gemuk</string>
