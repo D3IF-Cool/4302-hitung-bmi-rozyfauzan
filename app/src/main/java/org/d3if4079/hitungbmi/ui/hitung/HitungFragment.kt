@@ -1,6 +1,5 @@
-package org.d3if4079.hitungbmi.ui
+package org.d3if4079.hitungbmi.ui.hitung
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
@@ -8,18 +7,17 @@ import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import org.d3if4079.hitungbmi.R
 import org.d3if4079.hitungbmi.data.KategoriBMI
 import org.d3if4079.hitungbmi.databinding.FragmentHitungBinding
+import org.d3if4079.hitungbmi.ui.hitung.HitungFragmentDirections
 
 
 class HitungFragment : Fragment() {
     private val viewModel: HitungViewModel by viewModels()
     private lateinit var binding: FragmentHitungBinding
-    private lateinit var kategoriBMI: KategoriBMI
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
@@ -73,10 +71,8 @@ class HitungFragment : Fragment() {
             binding.beratBadanEditText.text = null
         }
 
-        binding.saranButton.setOnClickListener { view: View ->
-            view.findNavController().navigate(
-               HitungFragmentDirections.actionHitungFragmentToSaranFragment(kategoriBMI)
-            )
+        binding.saranButton.setOnClickListener {
+            viewModel.mulaiNavigasi()
         }
 
         binding.shareButton.setOnClickListener {
@@ -113,6 +109,20 @@ class HitungFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.getNavigasi().observe(viewLifecycleOwner, {
+            if (it == null)  return@observe
+
+            findNavController().navigate(HitungFragmentDirections.
+            actionHitungFragmentToSaranFragment(it))
+
+            viewModel.selesaiNavigasi()
+
+
+        })
+
+
+
+
         viewModel.getHasilBmi().observe(viewLifecycleOwner, {
             if (it == null)  return@observe
 
@@ -121,10 +131,8 @@ class HitungFragment : Fragment() {
             binding.buttonGroup.visibility = View.VISIBLE
 
 
-        }
+        })
 
-
-        )
     }
 
 

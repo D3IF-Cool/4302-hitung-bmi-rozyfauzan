@@ -1,14 +1,15 @@
-package org.d3if4079.hitungbmi.ui
+package org.d3if4079.hitungbmi.ui.hitung
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import org.d3if4079.hitungbmi.R
 import org.d3if4079.hitungbmi.data.HasilBmi
 import org.d3if4079.hitungbmi.data.KategoriBMI
 
 class HitungViewModel : ViewModel() {
     private val hasilBmi = MutableLiveData<HasilBmi?>()
+
+    private val  navigasi = MutableLiveData<KategoriBMI?>()
 
     fun hitungBmi(berat : String , tinggi:String, isMale : Boolean){
 
@@ -34,7 +35,19 @@ class HitungViewModel : ViewModel() {
 
  }
 
+    fun mulaiNavigasi(){
+        navigasi.value = hasilBmi.value?.kategori
+    }
+
+    fun selesaiNavigasi(){
+        navigasi.value = null
+    }
+
+
+
     fun getHasilBmi() : LiveData<HasilBmi?> = hasilBmi
+
+    fun getNavigasi() : LiveData<KategoriBMI?> = navigasi
 
 
 
