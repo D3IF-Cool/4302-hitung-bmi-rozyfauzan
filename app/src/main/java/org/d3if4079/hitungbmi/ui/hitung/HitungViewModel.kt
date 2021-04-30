@@ -3,13 +3,23 @@ package org.d3if4079.hitungbmi.ui.hitung
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.d3if4079.hitungbmi.data.HasilBmi
 import org.d3if4079.hitungbmi.data.KategoriBMI
+import org.d3if4079.hitungbmi.db.BmiDao
+import org.d3if4079.hitungbmi.db.BmiDb
+import org.d3if4079.hitungbmi.db.BmiEntity
 
-class HitungViewModel : ViewModel() {
+class HitungViewModel(private val db: BmiDao) : ViewModel() {
+
     private val hasilBmi = MutableLiveData<HasilBmi?>()
 
     private val  navigasi = MutableLiveData<KategoriBMI?>()
+
+    val data = db.getLastBmi()
 
     fun hitungBmi(berat : String , tinggi:String, isMale : Boolean){
 
@@ -32,6 +42,14 @@ class HitungViewModel : ViewModel() {
     }
 
         hasilBmi.value = HasilBmi(bmi,kategori)
+
+
+        viewModelScope.launch {
+            withContext(Dispatchers.IO){
+                val dataBmi = BmiEntity(berat= berat.toFloat(), tinggi = tinggi.toFloat(),isMale = isMale)
+                db.insert(dataBmi)
+            }
+        }
 
  }
 
