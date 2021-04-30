@@ -19,7 +19,6 @@ class HitungViewModel(private val db: BmiDao) : ViewModel() {
 
     private val  navigasi = MutableLiveData<KategoriBMI?>()
 
-    val data = db.getLastBmi()
 
     fun hitungBmi(berat : String , tinggi:String, isMale : Boolean){
 
